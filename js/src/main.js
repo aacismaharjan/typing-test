@@ -1,4 +1,4 @@
-import { paragraphs } from "./paragraph.js";
+import { paragraphs } from "./../db/paragraph.js";
 
 let TYPING_TIME = 0;
 const TYPING_DISPLAY_WORDS = 24;
@@ -18,11 +18,7 @@ const inputWord = document.querySelector("#word-input");
 const paragraphDisplay = document.querySelector("#paragraph");
 const timerDisplay = document.querySelector("#timer");
 const resultDisplay = document.querySelector("#result-screen");
-const previousStatDisplay = document.querySelector("#previous-stats");
 const refreshMatch = document.querySelector("#refresh-match");
-const generalSettingsDisplay = document.querySelector("#general-setting");
-const doneBtn = document.querySelector("#setting-done");
-const settingBtn = document.querySelector("#settingBtn");
 
 // Initialize the game on document load
 window.addEventListener("load", init);
@@ -30,41 +26,12 @@ window.addEventListener("load", init);
 // Refresh match on click
 refreshMatch.addEventListener("click", init);
 
-// Toggle the display of current setting
-settingBtn.addEventListener("click", () => {
-  const gameMode = document.querySelector("#game-mode");
-  const gameTime = document.querySelector("#game-time");
-
-  gameMode.value = settings["gameMode"];
-  gameTime.value = settings["gameTime"];
-  generalSettingsDisplay.classList.toggle("d-none");
-});
-
-// Update the current setting in localStorage
-doneBtn.addEventListener("click", (event) => {
-  event.preventDefault();
-
-  const gameMode = document.querySelector("#game-mode");
-  const gameTime = document.querySelector("#game-time");
-
-  localStorage.setItem(
-    "settings",
-    JSON.stringify({
-      gameMode: +gameMode.value,
-      gameTime: +gameTime.value,
-    })
-  );
-
-  generalSettingsDisplay.classList.add("d-none");
-  init();
-});
-
 // Initial function
 export function init() {
   getSettings();
 
   SCORE = 0;
-  TYPING_TIME = settings.gameTime * 60;
+  TYPING_TIME = (settings.gameTime * 60) / 4;
   timeRemaining = TYPING_TIME;
   distance = timeRemaining;
   startTime = null;
@@ -73,12 +40,11 @@ export function init() {
   inputWord.value = "";
   inputWord.disabled = false;
   resultDisplay.style.display = "none";
-  previousStatDisplay.style.display = "none";
+  // previousStatDisplay.style.display = "none";
   clearInterval(timerInterval);
   clearInterval(displayTimeInterval);
   timerInterval = null;
   displayTimeInterval = null;
-  generalSettingsDisplay.classList.add("d-none");
 
   // Typing input intial focus
   inputWord.focus();
@@ -221,8 +187,6 @@ function GameOver() {
 // Display User Statistics
 function updateGameStats() {
   resultDisplay.style.display = "flex";
-  generalSettingsDisplay.classList.add("d-none");
-  previousStatDisplay.style.display = "flex";
   const total = paragraphs
     .getWords(settings["gameMode"])
     .slice(0, curTotalWordIndex).length;
@@ -234,14 +198,22 @@ function updateGameStats() {
 
   const wpmNet = Math.floor((SCORE / seconds) * 60);
   let highest = +localStorage.getItem("highest");
-  let previousRecords = JSON.parse(localStorage.getItem("records"));
-  let previousRecordsEl;
+  const localRecords = JSON.parse(localStorage.getItem("records"));
 
   const record = {
     name: "Aashish",
     accuracy,
     wpmNet,
+    startTime,
   };
+
+  if (localRecords && localRecords.length > 0) {
+    const items = JSON.stringify([record, ...localRecords]);
+    localStorage.setItem("records", items);
+  } else {
+    const items = JSON.stringify([record]);
+    localStorage.setItem("records", items);
+  }
 
   if (!highest) {
     localStorage.setItem("highest", wpmNet);
@@ -251,48 +223,14 @@ function updateGameStats() {
     highest = wpmNet;
   }
 
-  if (!previousRecords) {
-    localStorage.setItem("records", JSON.stringify([record]));
-    previousRecordsEl = [record].map((item, index) => getListItem(item, index));
-  } else {
-    localStorage.setItem(
-      "records",
-      JSON.stringify([record, ...previousRecords].slice(0, 5))
-    );
-
-    previousRecordsEl = previousRecords
-      .map((item, index) => getListItem(item, index))
-      .join("");
-  }
-
-  document.querySelector(
-    "#previous-records"
-  ).innerHTML = `<ul class="list-group list-group-flush">${previousRecordsEl}</ul>`;
-
   // DOM Elements
   document.querySelector("#accuracy").innerHTML = `${accuracy} %`;
   document.querySelector(
     "#incorrectWords"
   ).innerHTML = `${incorrectWords} Words`;
-  document.querySelector("#correctWords").innerHTML = `${correctWords} Words`;
   document.querySelector("#wpmGross").innerHTML = `${wpmGross} WPM`;
   document.querySelector("#wpmNet").innerHTML = `${wpmNet} WPM`;
   document.querySelector("#highestNetWPM").innerHTML = `${highest} WPM`;
-}
-
-function getListItem(item, index) {
-  return `
-  <li class="list-group-item">
-    <div class="row justify-content-space-between">
-      <div class="col">${index + 1}. ${item.name}</div>
-      <div class="col" id="stat1">
-        ${item.accuracy}%
-      </div>
-      <div class="col" id="stat1">
-        ${item.wpmNet} WPM
-      </div>
-    </div>
-  </li>`;
 }
 
 // distance is in seconds

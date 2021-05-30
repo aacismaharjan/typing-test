@@ -11,279 +11,211 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
-    <style>
-      * {
-        outline: none !important;
-      }
-
-      .highlight,
-      .correct,
-      .incorrect {
-        display: inline-block;
-        position: relative;
-        z-index: 1;
-      }
-
-      .highlight::before,
-      .correct::before,
-      .incorrect::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -4px;
-        right: -4px;
-        background: rgba(0, 0, 0, 0.15);
-        color: #000;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        height: 100%;
-        z-index: -1;
-      }
-
-      .correct::before {
-        background: transparent;
-      }
-
-      .incorrect::before {
-        background: transparent;
-      }
-
-      input {
-        width: 100%;
-      }
-
-      #paragraph,
-      #result {
-        font-size: 1.75em;
-        word-spacing: 0.04rem;
-        letter-spacing: 0.02rem;
-      }
-    </style>
+    <link rel="stylesheet" href="./css/main.css">
+   
   </head>
 
   <body class="bg-dark text-white">
-    <header class="bg-secondary text-center p-3 mb-5">
-      <h2>WordBeater</h2>
-    </header>
-
-    <div class="container text-center">
-      <!-- Word & Input -->
-      <div class="row">
-        <div class="col-md-12 mx-auto">
-          <p
-            class="lead text-left p-3 bg-white text-secondary rounded"
-            id="paragraph"
-          ></p>
-
-          <div class="row no-gutters">
-            <div class="col">
-              <input
-                type="text"
-                class="form-control form-control-lg rounded-left py-4"
-                id="word-input"
-                autofocus
-                autocomplete="off"
-                autocapitalize="off"
-                autocorrect="off"
-                style="font-size: 1.75rem"
+    <!-- Diving body into fixed and flex size -->
+    <div class="row no-gutters">
+      <div class="col" style="max-width: 150px">
+        <div class="dropdown-menu1">
+          <a class="dropdown-item active" href="/index.html">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48px"
+              height="48px"
+              fill="currentColor"
+              class="bi bi-play"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"
               />
-            </div>
-
-            <div class="pl-3">
-              <button
-                class="btn btn-secondary rounded-right lead"
-                style="height: 100%; width: 100%"
-              >
-                <span style="font-size: 22px" id="timer">1:00</span>
-              </button>
-            </div>
-
-            <div class="pl-3">
-              <button
-                class="btn btn-secondary rounded-right"
-                style="height: 100%; width: 100%"
-                id="settingBtn"
-              >
-                <img src="./assets/SettingIcon.svg" alt="Setting Icon" />
-              </button>
-            </div>
-
-            <div class="pl-3">
-              <button
-                class="btn btn-info rounded-right"
-                style="height: 100%; width: 100%"
-                id="refresh-match"
-              >
-                <img src="./assets/RefreshIcon.svg" alt="Refresh Icon" />
-              </button>
-            </div>
-          </div>
+            </svg>
+            Start Typing
+          </a>
+          <a class="dropdown-item" href="/stats.html">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32px"
+              height="32px"
+              fill="currentColor"
+              class="bi bi-graph-up"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M0 0h1v15h15v1H0V0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5z"
+              />
+            </svg>
+            Game Stats
+          </a>
+          <a class="dropdown-item" href="/setting.html">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32px"
+              height="32px"
+              fill="currentColor"
+              class="bi bi-gear"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"
+              />
+              <path
+                d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"
+              />
+            </svg>
+            Settings
+          </a>
         </div>
       </div>
+      <div class="col">
+        <header class="bg-secondary text-center p-3 mb-5">
+          <h2>WordBeater</h2>
+        </header>
 
-      <div
-        class="row no-gutters justify-content-center d-none"
-        id="general-setting"
-      >
-        <div class="col-md-5 pr-3">
-          <div
-            class="row justify-content-center no-gutters"
-            style="font-size: 14px"
-          >
-            <div class="col-md-12">
-              <div
-                class="
-                  lead
-                  text-center
-                  p-3
-                  bg-white
-                  text-secondary
-                  rounded
-                  mt-3
-                "
-              >
-                <span
-                  class="h3 font-weight-bold text-secondary mb-3 d-inline-block"
-                >
-                  General Settings
-                </span>
+        <div class="container text-center">
+          <!-- Word & Input -->
+          <div class="row">
+            <div class="col-md-12 mx-auto">
+              <p
+                class="lead text-left p-3 bg-white text-secondary rounded"
+                id="paragraph"
+              ></p>
 
-                <form>
-                  <div class="form-group text-left">
-                    <label
-                      for="exampleFormControlSelect1"
-                      style="font-size: 16px"
-                    >
-                      Select Mode
-                    </label>
-                    <select class="form-control" id="game-mode">
-                      <option value="1">Easy</option>
-                      <option value="2">Normal</option>
-                      <option value="3">Hard</option>
-                    </select>
-                  </div>
+              <div class="row no-gutters">
+                <div class="col">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg rounded-left py-4"
+                    id="word-input"
+                    autofocus
+                    autocomplete="off"
+                    autocapitalize="off"
+                    autocorrect="off"
+                    style="font-size: 1.75rem"
+                  />
+                </div>
 
-                  <div class="form-group text-left">
-                    <label
-                      for="exampleFormControlSelect1"
-                      style="font-size: 16px"
-                    >
-                      Select Time
-                    </label>
-                    <select class="form-control" id="game-time">
-                      <option value="1">Short</option>
-                      <option value="3">Normal</option>
-                      <option value="5">Long</option>
-                    </select>
-                  </div>
-
-                  <button class="btn btn-primary" id="setting-done">
-                    Done
+                <div class="pl-3">
+                  <button
+                    class="btn btn-secondary rounded-right lead"
+                    style="height: 100%; width: 100%"
+                  >
+                    <span style="font-size: 22px" id="timer">1:00</span>
                   </button>
-                </form>
+                </div>
+
+                <div class="pl-3">
+                  <button
+                    class="btn btn-info rounded-right"
+                    style="height: 100%; width: 100%"
+                    id="refresh-match"
+                  >
+                    <img src="./assets/RefreshIcon.svg" alt="Refresh Icon" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div class="row no-gutters">
-        <div class="col-md-6 pr-3">
-          <div
-            class="row justify-content-center no-gutters"
-            style="font-size: 14px"
-            id="result-screen"
-          >
-            <div class="col-md-12">
+          <div class="row no-gutters justify-content-center">
+            <div class="col-md-6 pr-3">
               <div
-                class="lead p-3 bg-white text-secondary rounded mt-3"
-                id="result"
+                class="row no-gutters"
+                style="font-size: 12px"
+                id="result-screen"
               >
-                <span
-                  text-center
-                  class="h1 font-weight-bold text-secondary mb-3 d-inline-block"
-                  id="wpmNet"
-                >
-                  33 WPM
-                </span>
+                <div class="col-md-12">
+                  <div
+                    class="lead p-3 bg-white text-secondary rounded mt-3"
+                    id="result"
+                  >
+                    <span
+                      text-center
+                      class="
+                        h1
+                        font-weight-bold
+                        text-secondary
+                        mb-3
+                        d-inline-block
+                      "
+                      id="wpmNet"
+                    >
+                      33 WPM
+                    </span>
 
-                <div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                      <div class="row justify-content-space-between">
-                        <div class="col">Accuracy</div>
-                        <div class="col" id="accuracy">89%</div>
-                      </div>
-                    </li>
+                    <!-- <div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                          <div class="row justify-content-space-between">
+                            <div class="col">Accuracy</div>
+                            <div class="col" id="accuracy">89%</div>
+                          </div>
+                        </li>
 
-                    <li class="list-group-item">
-                      <div class="row justify-content-space-between">
-                        <div class="col">Gross WPM</div>
-                        <div class="col" id="wpmGross">50 WPM</div>
-                      </div>
-                    </li>
+                        <li class="list-group-item">
+                          <div class="row justify-content-space-between">
+                            <div class="col">Gross WPM</div>
+                            <div class="col" id="wpmGross">50 WPM</div>
+                          </div>
+                        </li>
 
-                    <li class="list-group-item">
-                      <div class="row justify-content-space-between">
-                        <div class="col">Correct Words</div>
-                        <div class="col" id="correctWords">89 Words</div>
-                      </div>
-                    </li>
+                        <li class="list-group-item">
+                          <div class="row justify-content-space-between">
+                            <div class="col">Correct Words</div>
+                            <div class="col" id="correctWords">89 Words</div>
+                          </div>
+                        </li>
 
-                    <li class="list-group-item">
-                      <div class="row justify-content-space-between">
-                        <div class="col">Incorrect Words</div>
-                        <div class="col" id="incorrectWords">89 Words</div>
-                      </div>
-                    </li>
+                        <li class="list-group-item">
+                          <div class="row justify-content-space-between">
+                            <div class="col">Incorrect Words</div>
+                            <div class="col" id="incorrectWords">89 Words</div>
+                          </div>
+                        </li>
 
-                    <li class="list-group-item">
-                      <div class="row justify-content-space-between">
-                        <div class="col">Highest Net WPM</div>
-                        <div class="col" id="highestNetWPM">89 Words</div>
-                      </div>
-                    </li>
-                  </ul>
+                        <li class="list-group-item">
+                          <div class="row justify-content-space-between">
+                            <div class="col">Highest Net WPM</div>
+                            <div class="col" id="highestNetWPM">89 Words</div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div> -->
+
+                    <table class="table table-borderless  table-striped">
+                      <tbody>
+                        <tr>
+                          <td >Accuracy</td>
+                          <td id="accuracy">100%</td>
+                        </tr>
+                        <tr>
+                          <td>Gross WPM</td>
+                          <td id="wpmGross">100% </td>
+                        </tr>
+                        <tr>
+                          <td>Incorrect Words</td>  
+                          <td id="incorrectWords">100%</td>
+                        </tr>
+                        <tr>
+                          <td>Highest Net WPM</td>
+                          <td id="highestNetWPM">100%</td>
+                        </tr>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="col-md-6">
-          <!-- Previous Stats Start -->
-          <div
-            class="row justify-content-center"
-            style="font-size: 14px"
-            id="previous-stats"
-          >
-            <div class="col-md-12">
-              <div
-                class="
-                  lead
-                  text-center
-                  p-3
-                  bg-white
-                  text-secondary
-                  rounded
-                  mt-3
-                "
-              >
-                <span
-                  class="h1 font-weight-bold text-secondary mb-3 d-inline-block"
-                >
-                  Previous Records
-                </span>
-                <div id="previous-records"></div>
-              </div>
-            </div>
-          </div>
-          <!-- Previous Stats End -->
-        </div>
       </div>
     </div>
 
-    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/src/main.js"></script>
   </body>
 </html>
