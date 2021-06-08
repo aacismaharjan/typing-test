@@ -1,0 +1,24 @@
+.highlight,
+.correct,
+.incorrect {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+
+.highlight::before,
+.correct::before,
+.incorrect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -4px;
+  right: -4px;
+  background: rgba(0, 0, 0, 0.15);
+  color: #000;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  height: 100%;
+  z-index: -1;
+}
