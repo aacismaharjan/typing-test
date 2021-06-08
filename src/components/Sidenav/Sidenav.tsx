@@ -5,6 +5,7 @@ import { BsGraphUp } from "react-icons/bs";
 import styled from "styled-components";
 import { IconContext } from "react-icons/lib";
 import { LinkContainer } from "react-router-bootstrap";
+import { FaUserCog } from "react-icons/fa";
 
 const StyledSidenav = styled.div`
   height: 100%;
@@ -63,6 +64,15 @@ const Sidenav = () => {
               <FiPlay />
             </IconContext.Provider>
             Start Typing
+          </Nav.Link>
+        </LinkContainer>
+
+        <LinkContainer to="/custom-typing">
+          <Nav.Link className="nav-item">
+            <IconContext.Provider value={{ size: "2rem", color: "#fff" }}>
+              <FaUserCog />
+            </IconContext.Provider>
+            Custom Typing
           </Nav.Link>
         </LinkContainer>
 
