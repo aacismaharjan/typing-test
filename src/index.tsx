@@ -5,7 +5,7 @@ import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router basename="typing-test">
       <App />
     </Router>
   </React.StrictMode>,
