@@ -12,10 +12,11 @@ function App() {
   return (
     <StyledApp>
       <Switch>
-        <Route path="/start-typing" component={StartTyping} />
-        <Route path="/custom-typing" component={CustomTyping} />
-        <Route path="/game-stats" component={GameStats} />
-        <Route path="/settings" component={GeneralSetting} />
+        <Route exact path="/" component={StartTyping} />
+        <Route exact path="/start-typing" component={StartTyping} />
+        <Route exact path="/custom-typing" component={CustomTyping} />
+        <Route exact path="/game-stats" component={GameStats} />
+        <Route exact path="/settings" component={GeneralSetting} />
       </Switch>
     </StyledApp>
   );

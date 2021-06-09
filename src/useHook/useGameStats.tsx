@@ -47,7 +47,7 @@ function useGameStats(
       updateGameLocalStorage(record);
       clearInterval(timerInterval.current);
     }
-  });
+  }, [startTime, isGameOver, paras, counter, timerInterval, words]);
 
   return {
     score,

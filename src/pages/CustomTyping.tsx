@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Sidenav from "../components/Sidenav/Sidenav";
 import Header from "../components/Header/Header";
 import { Container } from "react-bootstrap";
-import Typer from "./Typer";
-import ApplySettings from "./ApplySettings";
+import Typer from "../components/Typer";
+import ApplySettings from "../components/ApplySettings";
 
 const StyledContent = styled.div`
   margin-left: 150px;
 `;
 
 function CustomTyping() {
+  const [open, setOpen] = useState(true);
+  const [duration, setDuration] = useState(60);
+  const [paras, setParas] = useState(
+    "The quick brown fox jumps over the lazy dog"
+  );
+
+  const handleSetting = () => {
+    setOpen((open) => !open);
+  };
+
+  console.log({ duration, paras });
+
   return (
     <>
       <Sidenav />
@@ -19,14 +31,21 @@ function CustomTyping() {
         <Header />
 
         <Container style={{ paddingTop: "30px" }}>
-          <ApplySettings />
-
           <Typer
-            text={
-              "Scolding is something common in student life. Being a naughty boy, I am always scolded by my parents. But one day I was severely scolded by my English teacher. She infect teaches well. But that day, I could not resist the temptation that an adventure of Nancy Drew offered. While she was teaching, I was completely engrossed in reading that book. Nancy Drew was caught in the trap laid by some smugglers and it was then when I felt a light tap on my bent head. The teacher had caught me red handed. She scolded me then and there and insulted me in front of the whole class. I was embarrassed. My cheeks burned being guilty conscious. When the class was over, I went to the teacher to apologize. When she saw that I had realized my mistake, she cooled down and then told me in a very kind manner how disheartening it was when she found any student not paying attention. I was genuinely sorry and promised to myself never to commit such a mistake again."
-            }
-            settings={{ time: "1", mode: "0" }}
+            text={paras.replace(/(\r\n|\r|\n){2,}/g, "$1\n")}
+            settings={{ time: `${duration / 15}`, mode: "0" }}
+            handleSetting={handleSetting}
           />
+
+          {open && (
+            <ApplySettings
+              setOpen={setOpen}
+              duration={duration}
+              setDuration={setDuration}
+              paras={paras}
+              setParas={setParas}
+            />
+          )}
         </Container>
       </StyledContent>
     </>

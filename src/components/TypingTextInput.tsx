@@ -1,5 +1,6 @@
 import React from "react";
 import { MdRefresh } from "react-icons/md";
+import { BiCog } from "react-icons/bi";
 
 const TypingTextInput = (props: any) => {
   const { setValue, reset, time, childRef, ...rest } = props;
@@ -35,6 +36,18 @@ const TypingTextInput = (props: any) => {
           {time}
         </button>
       </div>
+
+      {props.handleSetting && (
+        <div className="col col-auto pl-3">
+          <button
+            className="btn btn-primary"
+            style={{ padding: "12px 14px" }}
+            onClick={props.handleSetting}
+          >
+            <BiCog fontSize="22px" />
+          </button>
+        </div>
+      )}
 
       <div className="col col-auto pl-3">
         <button

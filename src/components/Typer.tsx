@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getTimer } from "./../utils/date";
-import { initialSettings, SettingsTypeI } from "./GeneralSetting";
-import TypingTextInput from "../components/TypingTextInput";
-import TypingTextWords from "../components/TypingTextWords";
+import { getTimer } from "../utils/date";
+import { initialSettings, SettingsTypeI } from "../pages/GeneralSetting";
+import TypingTextInput from "./TypingTextInput";
+import TypingTextWords from "./TypingTextWords";
 import useGameStats from "../useHook/useGameStats";
-import GameStatModal from "../components/GameStatModal";
+import GameStatModal from "./GameStatModal";
 
 interface TyperPropsI {
   text: string;
   settings: SettingsTypeI;
+  handleSetting?: any;
 }
 
 function Typer(props: TyperPropsI) {
@@ -47,7 +48,7 @@ function Typer(props: TyperPropsI) {
   }, [paras, paraIndex, DISPLAY_COUNT]);
 
   useEffect(() => {
-    setTypingTime(parseInt(settings.time) * 1000 * 60 * 15);
+    setTypingTime(parseFloat(settings.time) * 1000 * 60 * 15);
   }, [settings]);
 
   useEffect(() => {
@@ -162,6 +163,7 @@ function Typer(props: TyperPropsI) {
         onInput={handleChange}
         reset={handleReset}
         childRef={inputRef}
+        handleSetting={props.handleSetting}
       />
 
       <GameStatModal

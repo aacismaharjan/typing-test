@@ -5,7 +5,7 @@ import Header from "./../components/Header/Header";
 import { Container } from "react-bootstrap";
 import { paragraphs } from "./../db/paragraph";
 import { initialSettings, SettingsTypeI } from "./GeneralSetting";
-import Typer from "./Typer";
+import Typer from "../components/Typer";
 
 const StyledContent = styled.div`
   margin-left: 150px;
