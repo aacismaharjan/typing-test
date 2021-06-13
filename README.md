@@ -3,9 +3,14 @@
 👨‍🎨 An open-source typing tester with custom typing, user friendly stats display and much more
 
 ![Open React template preview](./src/assets/demo-custom-typing.png)
+
 ![Open React template preview](./src/assets/demo-stats-bar.png)
 
 Made with 💙 by [Aashish Maharjan](https://aacismaharjan.github.io).
+
+## Live demo
+
+Check out the live demo here 👉️ [https://aacismaharjan.github.io/typing-test/](https://aacismaharjan.github.io/typing-test/)
 
 # Getting Started with Create React App
 
