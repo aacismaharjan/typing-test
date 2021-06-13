@@ -2,7 +2,7 @@
 
 👨‍🎨 An open-source typing tester with custom typing, user friendly stats display and much more
 
-![Open React template preview](./demo.png)
+![Open React template preview](./src/assets/demo.png)
 
 Made with 💙 by [ashish Maharjan](https://aacismaharjan.github.io).
 
