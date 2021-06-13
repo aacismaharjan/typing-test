@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { chapters as chaptersDb } from "../db/chapters";
+import { chapters as chaptersDb } from "../../db/chapters";
 
 function ApplySettings(props: any) {
   const [chapters] = useState(chaptersDb);

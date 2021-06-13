@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getTimer } from "../utils/date";
-import { initialSettings, SettingsTypeI } from "../pages/GeneralSetting";
+import { getTimer } from "../../utils/date";
+import { initialSettings, SettingsTypeI } from "../../pages/GeneralSetting";
 import TypingTextInput from "./TypingTextInput";
 import TypingTextWords from "./TypingTextWords";
-import useGameStats from "../useHook/useGameStats";
-import GameStatModal from "./GameStatModal";
+import useGameStats from "../../useHook/useGameStats";
+import GameStatModal from "../Stats/GameStatModal";
 
 interface TyperPropsI {
   text: string;

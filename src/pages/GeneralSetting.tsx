@@ -42,7 +42,7 @@ function GeneralSetting() {
       <StyledContent>
         <Header />
 
-        <Container style={{ paddingTop: "30px" }}>
+        <Container style={{ paddingTop: "30px", paddingBottom: "20px" }}>
           <Form
             style={{ background: "white" }}
             className="p-4 rounded"

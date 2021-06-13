@@ -5,7 +5,7 @@ import Header from "./../components/Header/Header";
 import { Container } from "react-bootstrap";
 import { paragraphs } from "./../db/paragraph";
 import { initialSettings, SettingsTypeI } from "./GeneralSetting";
-import Typer from "../components/Typer";
+import Typer from "../components/Typing/Typer";
 
 const StyledContent = styled.div`
   margin-left: 150px;
@@ -36,7 +36,7 @@ function StartTyping() {
       <StyledContent>
         <Header />
 
-        <Container style={{ paddingTop: "30px" }}>
+        <Container style={{ paddingTop: "30px", paddingBottom: "20px" }}>
           <Typer text={paras} settings={settings} />
         </Container>
       </StyledContent>

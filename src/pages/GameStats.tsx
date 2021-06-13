@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../components/Header/Header";
-import { Container, Table } from "react-bootstrap";
-import moment from "moment";
+import { Container, Form } from "react-bootstrap";
 import Sidenav from "../components/Sidenav/Sidenav";
+import GameChart from "../components/Stats/BarChart";
+import GameStatsTable from "../components/Stats/Table";
+import GameLineChart from "../components/Stats/LineChart";
 
 const StyledContent = styled.div`
   margin-left: 150px;
-
-  .container {
-    padding-top: 30px;
-  }
 
   .table {
     background-color: white;
@@ -18,6 +16,31 @@ const StyledContent = styled.div`
 `;
 
 function GameStats() {
+  const [items, setItems] = useState<any>([]);
+  const [type, setType] = useState(1);
+  const [nRecords, seNRecords] = useState(10);
+
+  useEffect(() => {
+    let records: any = localStorage.getItem("records");
+    records = records ? JSON.parse(records) : [];
+    setItems(
+      records
+        .reverse()
+        .filter((item: any) => item.seconds > 30)
+        .slice(0, nRecords)
+    );
+  }, [nRecords]);
+
+  const getGameStatByType = (type: number, items: any) => {
+    if (type === 1) {
+      return <GameStatsTable items={items} />;
+    } else if (type === 2) {
+      return <GameChart items={items} />;
+    } else {
+      return <GameLineChart items={items} />;
+    }
+  };
+
   return (
     <>
       <Sidenav />
@@ -25,37 +48,42 @@ function GameStats() {
       <StyledContent>
         <Header />
 
-        <Container className="container">
-          <Table striped bordered hover className="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Accuracy</th>
-                <th>WPM Net</th>
-                <th>WPM Gross</th>
-                <th>Total</th>
-                <th>Seconds</th>
-                <th>Time</th>
-              </tr>
-            </thead>
-            <tbody>
-              {localStorage.getItem("records") &&
-                JSON.parse(localStorage.getItem("records") || "[]")
-                  .reverse()
-                  .slice(0, 10)
-                  .map((item: any, index: number) => (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>{item.accuracy}%</td>
-                      <td>{item.wpmNet} wpm</td>
-                      <td>{item.wpmGross} wpm</td>
-                      <td>{item.total} words</td>
-                      <td>{item.seconds}s</td>
-                      <td>{moment(item.startTime).fromNow()}s</td>
-                    </tr>
-                  ))}
-            </tbody>
-          </Table>
+        <Container style={{ paddingTop: "30px", paddingBottom: "20px" }}>
+          <Form className="p-3 pb-2 rounded mb-3 bg-white">
+            <div className="row">
+              <div className="col-3">
+                <Form.Group className="mb-0" controlId="formBasicEmail">
+                  <Form.Control
+                    as="select"
+                    name="select-stat-type"
+                    onChange={(event) => setType(+event.target.value)}
+                  >
+                    <option value="1">Table</option>
+                    <option value="2">Bar Graph</option>
+                    <option value="3">Line Graph</option>
+                  </Form.Control>
+                </Form.Group>
+              </div>
+
+              <div className="col-3">
+                <Form.Group className="mb-0" controlId="formBasicEmail">
+                  <Form.Control
+                    as="select"
+                    name="select-stat-type"
+                    onChange={(event) => seNRecords(+event.target.value)}
+                  >
+                    <option value="10">10 Records</option>
+                    <option value="20">20 Records</option>
+                    <option value="30">30 Records</option>
+                    <option value="50">50 Records</option>
+                    <option value="100">100 Records</option>
+                  </Form.Control>
+                </Form.Group>
+              </div>
+            </div>
+          </Form>
+
+          {getGameStatByType(type, items)}
         </Container>
       </StyledContent>
     </>
