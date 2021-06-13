@@ -1,3 +1,11 @@
+# typing-test
+
+👨‍🎨 An open-source typing tester with custom typing, user friendly stats display and much more
+
+![Open React template preview](./demo.png)
+
+Made with 💙 by [ashish Maharjan](https://aacismaharjan.github.io).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
