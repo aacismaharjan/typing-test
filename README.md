@@ -2,12 +2,8 @@
 
 👨‍🎨 An open-source typing tester with custom typing, user friendly stats display and much more
 
-![Open React template preview](./src/assets/demo.png)
 ![Open React template preview](./src/assets/demo-custom-typing.png)
-![Open React template preview](./src/assets/demo-stats-table.png)
 ![Open React template preview](./src/assets/demo-stats-bar.png)
-![Open React template preview](./src/assets/demo-stats-line.png)
-![Open React template preview](./src/assets/demo-setting.png)
 
 Made with 💙 by [Aashish Maharjan](https://aacismaharjan.github.io).
 
