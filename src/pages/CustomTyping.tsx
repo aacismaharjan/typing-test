@@ -8,6 +8,10 @@ import ApplySettings from "../components/Setting/ApplySettings";
 
 const StyledContent = styled.div`
   margin-left: 150px;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
 `;
 
 function CustomTyping() {

@@ -52,6 +52,34 @@ const StyledSidenav = styled.div`
       }
     }
   }
+
+  @media (max-width: 768px) {
+    height: auto;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    top: unset;
+    padding-top: 0;
+
+    .nav-container {
+      width: 100%;
+      height: auto;
+      flex-direction: row!important;
+
+      .nav-item {
+        padding: 15px 0;
+        
+        & > span {
+          display: none;
+        }
+
+        & > svg {
+          height: 22px;
+          width: 22px;
+        }
+      }
+    }
+  }
 `;
 
 const Sidenav = () => {
@@ -63,7 +91,7 @@ const Sidenav = () => {
             <IconContext.Provider value={{ size: "2rem" }}>
               <FiPlay />
             </IconContext.Provider>
-            Start Typing
+           <span>Start Typing</span>
           </Nav.Link>
         </LinkContainer>
 
@@ -72,7 +100,7 @@ const Sidenav = () => {
             <IconContext.Provider value={{ size: "2rem", color: "#fff" }}>
               <FaUserCog />
             </IconContext.Provider>
-            Custom Typing
+            <span>Custom Typing</span>
           </Nav.Link>
         </LinkContainer>
 
@@ -81,7 +109,7 @@ const Sidenav = () => {
             <IconContext.Provider value={{ size: "1.8rem" }}>
               <BsGraphUp />
             </IconContext.Provider>
-            Game Stats
+           <span>Game Stats</span> 
           </Nav.Link>
         </LinkContainer>
 
@@ -90,7 +118,7 @@ const Sidenav = () => {
             <IconContext.Provider value={{ size: "2rem" }}>
               <FiSettings />
             </IconContext.Provider>
-            Settings
+            <span>Settings</span>
           </Nav.Link>
         </LinkContainer>
       </Nav>

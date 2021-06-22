@@ -7,6 +7,10 @@ import Sidenav from "../components/Sidenav/Sidenav";
 
 const StyledContent = styled.div`
   margin-left: 150px;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
 `;
 
 export const initialSettings: SettingsTypeI = {

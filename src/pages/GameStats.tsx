@@ -13,6 +13,10 @@ const StyledContent = styled.div`
   .table {
     background-color: white;
   }
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
 `;
 
 function GameStats() {
@@ -51,7 +55,7 @@ function GameStats() {
         <Container style={{ paddingTop: "30px", paddingBottom: "20px" }}>
           <Form className="p-3 pb-2 rounded mb-3 bg-white">
             <div className="row">
-              <div className="col-3">
+              <div className="col-6 col-md-3 ">
                 <Form.Group className="mb-0" controlId="formBasicEmail">
                   <Form.Control
                     as="select"
@@ -65,7 +69,7 @@ function GameStats() {
                 </Form.Group>
               </div>
 
-              <div className="col-3">
+              <div className="col-6 col-md-3 ">
                 <Form.Group className="mb-0" controlId="formBasicEmail">
                   <Form.Control
                     as="select"

@@ -5,16 +5,17 @@ import moment from "moment";
 function GameStatsTable(props: any) {
   return (
     <>
-      <Table striped bordered hover className="table">
+     <div className="table-responsive">
+        <Table striped bordered hover className="table">
         <thead>
           <tr>
-            <th>#</th>
-            <th>Accuracy</th>
-            <th>WPM Net</th>
-            <th>WPM Gross</th>
-            <th>Total</th>
-            <th>Seconds</th>
-            <th>Time</th>
+            <th >#</th>
+            <th >Accuracy</th>
+            <th style={{minWidth: "100px"}}>WPM Net</th>
+            <th style={{minWidth: "150px"}}>WPM Gross</th>
+            <th style={{minWidth: "100px"}}>Total</th>
+            <th style={{minWidth: "100px"}}>Seconds</th>
+            <th style={{minWidth: "200px"}}>Time</th>
           </tr>
         </thead>
         <tbody>
@@ -31,6 +32,7 @@ function GameStatsTable(props: any) {
           ))}
         </tbody>
       </Table>
+     </div>
     </>
   );
 }
